@@ -1,0 +1,367 @@
+<!--     
+// PRODUCED BY SYCOMORE CORP.                  
+// Ingenieur: Ngo Anh Khoa
+// Maitrise d'ouvrage : Christian Nguyen
+// Maitrise d'oeuvre : Ringier Zurich
+// Date: 04/04/2011
+// Product: Image Loader
+// Version 0.04042011 -->
+
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-wtidh; initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title></title>
+    <style type="text/css">
+	body{
+		margin:0;
+		padding:0;
+		height:1024px;
+		width:768px;
+	}
+        .main
+        {
+            
+            position:absolute;
+            top:0px;
+            left:0px;
+            
+         }
+		 .button{
+			 position:absolute;
+			 width:60px;
+			 height:50px;
+			 z-index:4;
+			 background:rgba(0,0,255,0);
+			 -webkit-tap-highlight-color:rgba(0,0,0,0);
+		 }
+		 .imgDiv{
+			 position:absolute;
+			 width:768px;
+			 height:1024px;
+			 left:0px;
+			 top:0px;
+		 }
+    </style>
+    <script type="text/javascript" src="360.js"></script>
+    <script type="text/jscript" type="text/javascript">
+		var div;
+		var have = true;
+		var style = 'imgDiv';
+		var imgFolder = 'img/seri/';
+		var imgCount = 58;
+        var p_position = [920,50,60,60];
+		var _index = 0;
+		var _pDraw = [[100,748],[200,748],[300,748],[400,748],[900,748],[900,748],[100,300],[200,300],[300,400],[500,600],[1000,500],[800,300],[700,400]];
+        var p_canvas;
+        var p_img1, p_img2;
+		var rotate;
+		var _mouseDown = false;
+		var but1, but2, but3, but4, but5;
+		var img = [];
+		var timer;
+		var info ;
+		img[0] = new Image();
+		img[0].src = 'img/color.jpg';
+		function LoadImg(){
+			for(i=1;i<5;i++){
+				img[i] = new Image();
+				img[i].src = 'img/color'+i+'.jpg';
+			}
+		}
+		
+		function But1(){
+			clearTimeout(rotate.timer);
+			if(have == true){
+				document.body.removeChild(rotate.imgDiv);
+				have = false;
+			}
+			//p_img1.src = p_img2.src;
+			p_img2.src = img[1].src;
+			//console.log(img[3].src);
+			p_Clearn();
+		}
+		
+		function But2(){
+			clearTimeout(rotate.timer);
+			if(have == true){
+				document.body.removeChild(rotate.imgDiv);
+				have = false;
+			}
+			//p_img1.src = p_img2.src;
+			p_img2.src = img[2].src;
+			//console.log(img[3].src);
+			p_Clearn();
+		}
+		
+		function But3(){
+			clearTimeout(rotate.timer);
+			if(have == true){
+				document.body.removeChild(rotate.imgDiv);
+				have = false;
+			}
+			//p_img1.src = p_img2.src;
+			p_img2.src = img[3].src;
+			//console.log(img[3].src);
+			p_Clearn();
+		}
+		
+		function But4(){
+			clearTimeout(rotate.timer);
+			if(have == true){
+				document.body.removeChild(rotate.imgDiv);
+				have = false;
+			}
+			//p_img1.src = p_img2.src;
+			p_img2.src = img[4].src;
+			//console.log(img[3].src);
+			p_Clearn();
+		}
+		
+		function But5(){
+			clearTimeout(rotate.timer);
+			if(have == true){
+				document.body.removeChild(rotate.imgDiv);
+				have = false;
+			}
+			//p_img1.src = p_img2.src;
+			p_img2.src = img[4].src;
+			//console.log(img[3].src);
+			p_Clearn();
+		}
+		
+		function But6(){
+			clearTimeout(rotate.timer);
+			if(have == true){
+				document.body.removeChild(rotate.imgDiv);
+				have = false;
+			}
+			//p_img1.src = p_img2.src;
+			p_img2.src = img[5].src;
+			//console.log(img[3].src);
+			p_Clearn();
+		}
+		
+		function But7(){
+			clearTimeout(rotate.timer);
+			if(have == true){
+				document.body.removeChild(rotate.imgDiv);
+				have = false;
+			}
+			//p_img1.src = p_img2.src;
+			p_img2.src = img[6].src;
+			//console.log(img[3].src);
+			p_Clearn();
+		}
+		
+		function But8(){
+			//p_img1.src = p_img2.src;
+			//p_img2.src = img[6].src;
+			//console.log(img[3].src);
+			//p_Clearn();
+			//clearTimeout(rotate.timer);
+			info = document.createElement('img');
+			info.src = 'img/GT-86_info.png';
+			info.style.zIndex = 5;	
+			info.style.position = 'absolute';	
+			info.style.top = '0px';
+			info.style.left = '0px';	
+			document.body.appendChild(info);
+			info.addEventListener('click', function(){document.body.removeChild(info);},false);
+		}
+		
+        window.onload = function () {
+			div = document.body;
+			rotate = new Move360(div,imgFolder,imgCount,style);
+			LoadImg();
+			but1 = document.getElementById('button1');
+			but2 = document.getElementById('button2');
+			but3 = document.getElementById('button3');
+			but4 = document.getElementById('button4');
+			//but5 = document.getElementById('button5');	
+			//but6 = document.getElementById('button6');
+			//but7 = document.getElementById('button7');	
+			but8 = document.getElementById('button8');	
+			but9 = document.getElementById('button9');
+            p_AppStart();  
+			//p_Draw(_pDraw);     
+			but1.addEventListener('click',But1,false);    
+			but2.addEventListener('click',But2,false); 
+			but3.addEventListener('click',But3,false); 
+			but4.addEventListener('click',But4,false); 
+			//but5.addEventListener('click',But5,false);  
+			//but6.addEventListener('click',But6,false); 
+			//but7.addEventListener('click',But7,false); 
+			but8.addEventListener('click',But8,false); 
+			but9.addEventListener('click',p_Draw,false); 
+			
+			for(var i=0; i< rotate.imgCount; i++){
+				rotate.img[i] = new Image();
+				rotate.img[i].src = rotate.imgFolder+(i+1)+'.jpg';
+			}
+			setTimeout(function(){rotate.init();},100);
+        }
+
+        function p_AppStart() {
+
+            p_canvas = document.createElement('canvas');
+            p_canvas.className = 'main';
+            p_canvas.width = 768;
+            p_canvas.height = 1024;
+            document.body.appendChild(p_canvas);
+
+			
+            var _context = p_canvas.getContext('2d');
+
+            p_img1 = document.getElementById('img2');
+			p_img2 = document.getElementById('img1');
+            _context.drawImage(p_img1, 0, 0);
+            _context.globalCompositeOperation = "destination-out";
+
+			// for iOS
+            p_canvas.addEventListener('touchstart', p_TouchStart, false);
+            p_canvas.addEventListener('touchmove', p_TouchMove, false);
+
+			// for PC & Mac
+            p_canvas.addEventListener('mousedown', p_MouseDown, false);
+            p_canvas.addEventListener('mousemove', p_MouseMove, false);
+            p_canvas.addEventListener('mouseup', p_MouseUp, false);
+			
+			
+        }
+
+        function p_Earn(_x, _y) 
+		{
+            var _context = p_canvas.getContext('2d');
+
+            var radgrad3 = _context.createRadialGradient(_x, _y, 0, _x, _y, 36);
+            radgrad3.addColorStop(0, 'rgba(0,201,255,64)');
+            radgrad3.addColorStop(1, 'rgba(0,201,255,0)');
+            
+            _context.beginPath();
+            _context.fillStyle = radgrad3;
+            _context.arc(_x, _y, 0, 0, Math.PI * 2, true);
+            _context.arc(_x, _y, 36, 0, Math.PI * 2, true);
+            _context.closePath();
+            _context.fill();
+        }
+		
+		 function p_Earn1(_x, _y) 
+		{
+            var _context = p_canvas.getContext('2d');
+
+            var radgrad3 = _context.createRadialGradient(_x, _y, 0, _x, _y, 400);
+            radgrad3.addColorStop(0, 'rgba(0,201,255,64)');
+            radgrad3.addColorStop(1, 'rgba(0,201,255,0)');
+            
+            _context.beginPath();
+            _context.fillStyle = radgrad3;
+            _context.arc(_x, _y, 0, 0, Math.PI * 2, true);
+            _context.arc(_x, _y, 400, 0, Math.PI * 2, true);
+            _context.closePath();
+            _context.fill();
+        }
+
+        function p_TouchMove(_e) {
+
+            _e.preventDefault();
+
+			var _x, _y;
+			// this is for iOS
+			if (_mouseDown == false)
+			{
+	            _x = _e.changedTouches[0].clientX;
+	            _y = _e.changedTouches[0].clientY;
+	            //_x = _e.clientX;
+    		//_y = _e.clientY;
+			} else
+			{
+			//	this is for PC, Mac
+				_x = window.event.x;
+				_y = window.event.y;				
+			}
+
+            p_Earn(_x, _y);
+        }
+		
+		function p_MouseDown(_e) 
+		{
+			_mouseDown = true;
+			p_TouchStart(_e);
+		}
+
+		function p_MouseUp(_e) 
+		{
+			_mouseDown = false;
+			
+		}
+
+		function p_MouseMove(_e) 
+		{
+			if (_mouseDown == true)
+			{
+				p_TouchMove(_e);
+			}
+		}
+	
+        function p_TouchStart(_e) {
+
+            _e.preventDefault();
+            var _x, _y;
+            _x = _e.changedTouches[0].clientX;
+            _y = _e.changedTouches[0].clientY;
+            //_x = _e.clientX;
+            //_y = _e.clientY;
+
+            if (p_position[0] <= _x && _x <= p_position[1] + p_position[0]  && p_position[2] <= _y && _y <= p_position[2] + p_position[3]) {
+                p_Clearn();
+            }
+            else {
+                p_Earn(_x, _y);
+            }
+        }
+
+        function p_Clearn() {
+            document.body.removeChild(p_canvas);
+
+            p_AppStart();
+			
+			//p_Earn1(10, 748) ;
+			//p_Earn1(100, 748) ;
+            //p_Earn1(150, 748) ;
+			//p_Earn1(200, 748) ;
+        }
+		
+		function p_Draw(){
+			p_img2.src = img[0].src;
+			if(_index<5){
+				var x = _pDraw[_index][1];
+				var y = _pDraw[_index][0];
+				p_Earn1(x,y);
+				_index = _index+1;
+				timer = setTimeout(p_Draw,100,_index);
+			}
+			else{
+				_index = 0;
+				clearTimeout(timer);
+				have = true;
+				setTimeout(function(){rotate.init();},100);
+			}
+			
+		}
+    </script>
+</head>
+<body>
+    <img id='img1' src="img/color3.jpg" style='position:absolute;top:0px;left:0px;width:768px;height:1024px;' />
+    <img id='img2' src="img/color.jpg" style='width:768px;height:1024px;visibility:hidden' />
+    <div id="button1" class="button" style="left: 651px; top: 240px;"></div>
+    <div id="button2" class="button" style="left: 651px; top: 291px;"></div>
+    <div id="button3" class="button" style="left: 651px; top: 342px;"></div>
+    <div id="button4" class="button" style="left: 651px; top: 393px;"></div>
+    <!--<div id="button5" class="button" style="left: 690px; top: 427px;"></div>
+    <div id="button6" class="button" style="left: 690px; top: 474px;"></div>
+    <div id="button7" class="button" style="left: 690px; top: 525px;"></div>-->
+    <div id="button8" class="button" style="left: 658px; top: 765px; width: 70px; height: 69px;"></div>
+    <div id="button9" class="button" style="left: 658px; top: 844px; width:70px; height:70px"></div>
+</body>
+</html>
